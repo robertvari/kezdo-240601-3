@@ -46,6 +46,19 @@ class MagicNumber:
             print(f"I take 10 credits from you.")
             self.__player.take_credits(10)
 
+        if self.__player.credits > 0:
+            print(f"You have {self.__player.credits} credits.")
+        elif self.__player.credits == 0:
+            print(f"You lost all of your credits but I give you an other chance.")
+        else:
+            print("You lost all of your credits. Game Over.")
+            self.exit_game()
+
+        if self.__player.ask_for_new_round():
+            self.game_loop()
+        else:
+            self.exit_game()
+
     def clear_screen(self):
         os.system("cls")
 
