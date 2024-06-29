@@ -45,6 +45,7 @@ class MagicNumber:
             print(f"I take 10 credits from you.")
             self.__player.take_credits(10)
 
+        
         if self.__player.credits > 0:
             print(f"You have {self.__player.credits} credits.")
         elif self.__player.credits == 0:
@@ -73,6 +74,7 @@ class MagicNumber:
     def exit_game(self):
         self.clear_screen()
         print("Sorry to see you go :( Maybe next time ;)")
+        exit()
 
 class Player:
     def __init__(self):
