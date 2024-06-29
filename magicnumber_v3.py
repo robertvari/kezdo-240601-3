@@ -11,10 +11,19 @@ class MagicNumber:
         self.intro()
 
         if self.__player.ask_for_start_game():
-            print("Start game...")
+            self.game_loop()
         else:
             self.exit_game()
     
+    def game_loop(self):
+        self.clear_screen()
+
+        # reset trycount
+        self.__trycount = 3
+
+        self.__computer.think_a_number()
+        self.__player.think_a_number()
+
     def clear_screen(self):
         os.system("cls")
 
@@ -56,6 +65,9 @@ class Player:
             return True
         return False
 
+    def think_a_number(self):
+        pass
+
 class Computer:
     def __init__(self):
         self.__min_number = 1
@@ -69,5 +81,8 @@ class Computer:
     @property
     def max_number(self):
         return self.__max_number
+
+    def think_a_number(self):
+        pass
 
 MagicNumber()
