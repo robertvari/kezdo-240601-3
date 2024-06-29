@@ -24,6 +24,28 @@ class MagicNumber:
         self.__computer.think_a_number()
         self.__player.think_a_number()
 
+        while self.__computer.my_number != self.__player.my_number:
+            self.clear_screen()
+
+            self.__trycount -= 1
+            if self.__trycount == 0:
+                break
+
+            print(f"Wrong guess! You have {self.__trycount} tries left. Try again.")
+            self.__player.think_a_number()
+        
+        self.clear_screen()
+
+        # End game conditions
+        if self.__computer.my_number == self.__player.my_number:
+            print(f"You win! {self.__computer.my_number} was my number! :)")
+            print("I give you 10 credits :)")
+            self.__player.give_credits(10)
+        else:
+            print(f"You lost the round. My number was {self.__computer.my_number}.")
+            print(f"I take 10 credits from you.")
+            self.__player.take_credits(10)
+
     def clear_screen(self):
         os.system("cls")
 
@@ -50,6 +72,20 @@ class Player:
     def name(self):
         return self.__name
 
+    @property
+    def my_number(self):
+        return str(self.__my_number)
+
+    @property
+    def credits(self):
+        return self.__credits
+
+    def give_credits(self, value):
+        self.__credits += value
+
+    def take_credits(self, value):
+        self.__credits -= value
+
     def get_name(self):
         self.__name = input("What is your name?")
 
@@ -66,13 +102,17 @@ class Player:
         return False
 
     def think_a_number(self):
-        pass
+        self.__my_number = input("What is your number? ")
 
 class Computer:
     def __init__(self):
         self.__min_number = 1
         self.__max_number = 10
         self.__my_number = 0
+
+    @property
+    def my_number(self):
+        return str(self.__my_number)
 
     @property
     def min_number(self):
@@ -83,6 +123,6 @@ class Computer:
         return self.__max_number
 
     def think_a_number(self):
-        pass
+        self.__my_number = random.randint(self.__min_number, self.__max_number)
 
 MagicNumber()
