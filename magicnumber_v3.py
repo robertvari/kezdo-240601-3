@@ -79,7 +79,7 @@ class MagicNumber:
 class Player:
     def __init__(self):
         self.__name = None
-        self.__credits = 0
+        self.__credits = 30
         self.__my_number = 0
 
     @property
