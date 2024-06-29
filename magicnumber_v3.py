@@ -1,11 +1,10 @@
-import os, random, time
+import os, random
 
 
 class MagicNumber:
     def __init__(self):
         self.__player = Player()
         self.__computer = Computer()
-        self.__trycount = 3
 
         self.clear_screen()
         self.intro()
@@ -19,7 +18,7 @@ class MagicNumber:
         self.clear_screen()
 
         # reset trycount
-        self.__trycount = 3
+        trycount = 3
 
         self.__computer.think_a_number()
         self.__player.think_a_number()
@@ -27,11 +26,11 @@ class MagicNumber:
         while self.__computer.my_number != self.__player.my_number:
             self.clear_screen()
 
-            self.__trycount -= 1
-            if self.__trycount == 0:
+            trycount -= 1
+            if trycount == 0:
                 break
 
-            print(f"Wrong guess! You have {self.__trycount} tries left. Try again.")
+            print(f"Wrong guess! You have {trycount} tries left. Try again.")
             self.__player.think_a_number()
         
         self.clear_screen()
