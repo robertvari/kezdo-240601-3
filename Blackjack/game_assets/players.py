@@ -28,6 +28,19 @@ class Player_BASE:
     def hand_value(self):
         return sum([card.value for card in self.__hand])
 
+    def init_hand(self, deck):
+        self.__hand.clear()
+
+        self.__hand.append(deck.draw())
+
+        # Check if we draw two Aces
+        new_card = deck.draw()
+        #           True                  True
+        if self.hand_value > 10 and new_card.value == 11:
+            new_card.change_ace()
+
+        self.__hand.append(new_card)
+
     def draw(self, deck):
         while self.__playing:
             if self.hand_value < 16:
@@ -57,6 +70,9 @@ if __name__ == '__main__':
 
     ai_player = AIPlayer()
     player = Player()
+
+    ai_player.init_hand(deck)
+    player.init_hand(deck)
     
     ai_player.draw(deck)
     player.draw(deck)
