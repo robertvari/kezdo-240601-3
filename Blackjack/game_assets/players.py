@@ -9,11 +9,14 @@ class Player_BASE:
         self.__playing = True
 
         # Then method calls
-        self.__create()
+        self._create()
 
-    def __create(self):
+    def _create(self):
         self.__credits = random.randint(50, 100)
         self.__name = self.__get_random_name()
+
+    def _set_name(self, new_name):
+        self.__name = new_name
 
     def __get_random_name(self):
         first_names = ["Marnie", "Johnathan", "Mahnoor", "Hassan", "Alissa", "Millie", "Qasim", "Damon", "Shreya", "Carly"]
@@ -22,7 +25,9 @@ class Player_BASE:
         return f"{random.choice(first_names)} {random.choice(last_names)}"
 
 class Player(Player_BASE):
-    pass
+    def _create(self):
+        super()._create()
+        self._set_name(input("What is your name? "))
 
 class AIPlayer(Player_BASE):
     pass
