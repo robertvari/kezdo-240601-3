@@ -51,6 +51,7 @@ class Player_BASE:
 
     def init_hand(self, deck):
         self.__hand.clear()
+        self.__playing = True
 
         if self.__credits >= 10:
             self.__credits -= 10
@@ -119,7 +120,7 @@ class Player(Player_BASE):
             else:
                 self.playing = False
 
-    def ask_for_new_round():
+    def ask_for_new_round(self):
         return input("Do you want to play a new round? (y/n)") == "y"
 
 class AIPlayer(Player_BASE):

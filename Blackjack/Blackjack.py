@@ -28,6 +28,7 @@ class Blackjack:
     def __game_loop(self):
         self.__clear_screen()
         self.__deck.reset()
+        self.__bet = 0
 
         random.shuffle(self.__player_list)
 
