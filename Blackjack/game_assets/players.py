@@ -12,7 +12,7 @@ class Player_BASE:
         self._create()
 
     def _create(self):
-        self.__credits = random.randint(50, 100)
+        self.__credits = random.randint(0, 20)
         self.__name = self.__get_random_name()
 
     def _set_name(self, new_name):
@@ -51,6 +51,13 @@ class Player_BASE:
 
     def init_hand(self, deck):
         self.__hand.clear()
+
+        if self.__credits >= 10:
+            self.__credits -= 10
+        else:
+            self.__playing = False
+            print(f"{self.__name} left the game")
+            return
 
         self.__hand.append(deck.draw())
 
