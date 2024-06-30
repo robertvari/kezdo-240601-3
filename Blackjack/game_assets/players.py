@@ -13,10 +13,13 @@ class Player_BASE:
 
     def __create(self):
         self.__credits = random.randint(50, 100)
+        self.__name = self.__get_random_name()
 
     def __get_random_name(self):
         first_names = ["Marnie", "Johnathan", "Mahnoor", "Hassan", "Alissa", "Millie", "Qasim", "Damon", "Shreya", "Carly"]
         last_names =  ["Roy", "Aguirre", "Sandoval", "Rogers", "Cole", "Matthams", "Allen", "Stokes", "Deleon", "Hampton"]
+
+        return f"{random.shuffle(first_names)} {random.shuffle(last_names)}"
 
 class Player(Player_BASE):
     pass
