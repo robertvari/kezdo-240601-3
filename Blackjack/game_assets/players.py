@@ -12,7 +12,7 @@ class Player_BASE:
         self._create()
 
     def _create(self):
-        self.__credits = random.randint(0, 20)
+        self.__credits = random.randint(50, 100)
         self.__name = self.__get_random_name()
 
     def _set_name(self, new_name):
@@ -85,6 +85,13 @@ class Player_BASE:
     def show_hand(self):
         print(f"Name: {self.__name}", f"Cards: {self.__hand}", f"Hand value: {self.hand_value}")
 
+    def give_reward(self, credits):
+        print(f"{self.__name} wind {credits} credits.")
+        self.__credits += credits
+
+    def __str__(self):
+        return self.__name
+
 class Player(Player_BASE):
     def _create(self):
         super()._create()
@@ -111,6 +118,9 @@ class Player(Player_BASE):
                 self._add_card(new_card)
             else:
                 self.playing = False
+
+    def ask_for_new_round():
+        return input("Do you want to play a new round? (y/n)") == "y"
 
 class AIPlayer(Player_BASE):
     pass

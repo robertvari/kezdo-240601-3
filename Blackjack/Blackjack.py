@@ -41,8 +41,23 @@ class Blackjack:
         for player in playing_players:
             player.draw(self.__deck)
 
-        for player in playing_players:
-            player.show_hand()
+        self.__get_winner(playing_players)
+
+    def __get_winner(self, playing_players):
+        winner_list = [i for i in playing_players if i.hand_value <= 21]
+
+        if not winner_list:
+            print("House wins!")
+        else:
+            sorted_players = sorted(winner_list, key=lambda p: p.hand_value)
+            winner = sorted_players[-1]
+            print(f"The winner is {winner}")
+            winner.give_reward(self.__bet)
+
+        if self.__player.ask_for_new_round():
+            self.__game_loop()
+        else:
+            self.__exit_game()
 
     def __clear_screen(self):
         os.system("cls")
