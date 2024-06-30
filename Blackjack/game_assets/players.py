@@ -88,6 +88,11 @@ class Player(Player_BASE):
         print(f"This is your turn {self.name}")
 
         while self.playing:
+            if self.hand_value > 21:
+                print("Your hand value is over 21.")
+                self.__playing = False
+                break
+
             print(f"Your cards: {self.cards}")
             print(f"Your hand value: {self.hand_value}")
 
@@ -110,8 +115,6 @@ if __name__ == '__main__':
 
     ai_player1 = AIPlayer()
     player = Player()
-
-    player.cards.append("Hello!!!")
 
     ai_player1.init_hand(deck)
     player.init_hand(deck)
