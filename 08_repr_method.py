@@ -18,5 +18,4 @@ adam = Person("Ádám")
 
 my_driends = [kriszta, tamas, csaba, adam]
 
-print(kriszta)
 print(my_driends)
