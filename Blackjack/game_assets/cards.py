@@ -65,6 +65,7 @@ class Deck:
     def draw(self):
         return self.__cards.pop(0)
 
+    # helper method for showing cards
     def show(self):
         print(self.__cards)
 
