@@ -46,7 +46,10 @@ class Player_BASE:
             if self.hand_value < 16:
                 print(f"{self.__name} draws a card...")
                 time.sleep(2)
-                self.__hand.append(deck.draw())
+                new_card = deck.draw()
+                if self.hand_value > 10 and new_card.value == 11:
+                    new_card.change_ace()
+                self.__hand.append(new_card)
             else:
                 print(f"{self.__name} finishes drawing.")
                 self.__playing = False
