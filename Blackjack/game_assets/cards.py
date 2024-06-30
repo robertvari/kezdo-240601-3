@@ -28,6 +28,7 @@ class Deck:
     def reset(self):
         self.__cards.clear()
 
+        # your classic python variable
         cards = [
             ["2", 2],
             ["3", 3],
@@ -45,12 +46,26 @@ class Deck:
         ]
 
         suits = ["Heart", "Club", "Diamond", "Spade"]
+
+        for suit in suits:
+            for card_data in cards:
+                name = f"{suit} {card_data[0]}"
+                value = card_data[1]
+                new_card = Card(name, value)
+                self.__cards.append(new_card)
     
     def draw(self):
         pass
 
     def show(self):
-        pass
+        print(self.__cards)
+
+    @property
+    def size(self):
+        return len(self.__cards)
 
 if __name__ == '__main__':
     deck = Deck()
+    deck.show()
+    if deck.size == 0:
+        print("End round")
