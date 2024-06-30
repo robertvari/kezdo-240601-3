@@ -24,16 +24,35 @@ class Player_BASE:
 
         return f"{random.choice(first_names)} {random.choice(last_names)}"
 
+    @property
+    def hand_value(self):
+        return sum([card.value for card in self.__hand])
+
+    def draw(self, deck):
+        self.__hand.append(deck.draw())
+
+    def show_hand(self):
+        print(self.__hand, f"Hand value: {self.hand_value}")
+
 class Player(Player_BASE):
     def _create(self):
         super()._create()
-        self._set_name(input("What is your name? "))
+        # self._set_name(input("What is your name? "))
+        self._set_name("Robert Vari")
 
 class AIPlayer(Player_BASE):
     pass
 
 
 if __name__ == '__main__':
+    from cards import Deck
+    deck = Deck()
+
     ai_player = AIPlayer()
     player = Player()
-    pass
+    
+    ai_player.draw(deck)
+    player.draw(deck)
+
+    ai_player.show_hand()
+    player.show_hand()
