@@ -19,7 +19,7 @@ class Player_BASE:
         first_names = ["Marnie", "Johnathan", "Mahnoor", "Hassan", "Alissa", "Millie", "Qasim", "Damon", "Shreya", "Carly"]
         last_names =  ["Roy", "Aguirre", "Sandoval", "Rogers", "Cole", "Matthams", "Allen", "Stokes", "Deleon", "Hampton"]
 
-        return f"{random.shuffle(first_names)} {random.shuffle(last_names)}"
+        return f"{random.choice(first_names)} {random.choice(last_names)}"
 
 class Player(Player_BASE):
     pass
