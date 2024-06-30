@@ -13,6 +13,10 @@ class Card:
     def name(self):
         return self.__name
 
+    def change_ace(self):
+        if self.__value == 11:
+            self.__value = 1
+
     def __str__(self):
         return f"Name: {self.__name} Value: {self.__value}"
     
@@ -70,10 +74,4 @@ class Deck:
 
 if __name__ == '__main__':
     deck = Deck()
-
-    my_card1 = deck.draw()
-    my_card2 = deck.draw()
-    my_card3 = deck.draw()
-    
-    my_hand = [my_card1, my_card2, my_card3]
-    print(my_hand)
+    my_hand = [deck.draw(), deck.draw()]
