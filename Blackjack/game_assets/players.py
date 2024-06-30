@@ -55,7 +55,7 @@ class Player_BASE:
                 self.__playing = False
 
     def show_hand(self):
-        print(self.__hand, f"Hand value: {self.hand_value}")
+        print(f"Name: {self.__name}", f"Cards: {self.__hand}", f"Hand value: {self.hand_value}")
 
 class Player(Player_BASE):
     def _create(self):
@@ -71,14 +71,22 @@ if __name__ == '__main__':
     from cards import Deck
     deck = Deck()
 
-    ai_player = AIPlayer()
+    ai_player1 = AIPlayer()
+    ai_player2 = AIPlayer()
+    ai_player3 = AIPlayer()
     player = Player()
 
-    ai_player.init_hand(deck)
+    ai_player1.init_hand(deck)
+    ai_player2.init_hand(deck)
+    ai_player3.init_hand(deck)
     player.init_hand(deck)
     
-    ai_player.draw(deck)
+    ai_player1.draw(deck)
+    ai_player2.draw(deck)
+    ai_player3.draw(deck)
     player.draw(deck)
 
-    ai_player.show_hand()
+    ai_player1.show_hand()
+    ai_player2.show_hand()
+    ai_player3.show_hand()
     player.show_hand()
