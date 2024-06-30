@@ -1,3 +1,5 @@
+import random
+
 class Card:
     def __init__(self, name, value):
         self.__name = name
@@ -53,9 +55,11 @@ class Deck:
                 value = card_data[1]
                 new_card = Card(name, value)
                 self.__cards.append(new_card)
+        
+        random.shuffle(self.__cards)
     
     def draw(self):
-        pass
+        return self.__cards.pop(0)
 
     def show(self):
         print(self.__cards)
@@ -66,6 +70,10 @@ class Deck:
 
 if __name__ == '__main__':
     deck = Deck()
-    deck.show()
-    if deck.size == 0:
-        print("End round")
+
+    my_card1 = deck.draw()
+    my_card2 = deck.draw()
+    my_card3 = deck.draw()
+    
+    my_hand = [my_card1, my_card2, my_card3]
+    print(my_hand)
