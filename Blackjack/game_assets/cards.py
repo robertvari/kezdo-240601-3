@@ -17,9 +17,22 @@ class Card:
     def __repr__(self):
         return self.__name
 
+class Deck:
+    def __init__(self):
+        # first attributes
+        self.__cards = []
+
+        # then method calls
+        self.reset()
+
+    def reset(self):
+        self.__cards.append("Hello")
+    
+    def draw(self):
+        pass
+
+    def show(self):
+        pass
+
 if __name__ == '__main__':
-    my_card1 = Card("Spade King", 10)
-    my_card2 = Card("Spade Ace", 11)
-    deck = [my_card1, my_card2]
-    print(deck)
-    print(my_card1)
+    deck = Deck()
