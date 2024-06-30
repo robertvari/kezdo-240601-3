@@ -72,6 +72,7 @@ class Deck:
     def size(self):
         return len(self.__cards)
 
+
 if __name__ == '__main__':
     deck = Deck()
     my_hand = [deck.draw(), deck.draw()]

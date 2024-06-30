@@ -1,7 +1,12 @@
 import os
+from game_assets.cards import Deck
 
 class Blackjack:
     def __init__(self):
+        # First attributes
+        self.__deck = Deck()
+
+        # Then method calls
         self.__clear_screen()
         self.__intro()
 
