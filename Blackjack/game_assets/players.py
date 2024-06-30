@@ -1,4 +1,4 @@
-import random
+import random, time
 
 class Player_BASE:
     def __init__(self):
@@ -29,7 +29,14 @@ class Player_BASE:
         return sum([card.value for card in self.__hand])
 
     def draw(self, deck):
-        self.__hand.append(deck.draw())
+        while self.__playing:
+            if self.hand_value < 16:
+                print(f"{self.__name} draws a card...")
+                time.sleep(2)
+                self.__hand.append(deck.draw())
+            else:
+                print(f"{self.__name} finishes drawing.")
+                self.__playing = False
 
     def show_hand(self):
         print(self.__hand, f"Hand value: {self.hand_value}")
