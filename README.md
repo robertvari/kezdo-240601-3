@@ -250,3 +250,55 @@ print(c.fullname)
 
 A fenti példában megfigyelheted, hogy a `fullname` egy class metódus de kintről attribútumként használod. Ha szeretnénk látni a `fullname` értékét akkor egyszerűen c.fullname amely a `@property` dekorátornak köszönhetően rögtön a mi metódusunkat hívja meg és visszaadja a teljes nevet.
 Ennek megfelelően a `c.fullname = ‘Your Name’` a `@fullname.setter` metódusát fogja indítani és átadja a beírt nevet. Így maximálisan kontolláljuk hogyan lesznek beállítva a `__first_name` és `__last_name` attribútumok. 
+
+## Örökítés
+Az osztályok örökítése az a folyamat amikor egy ősosztály attribútumait és metódusait szeretnénk tovább örökíteni más osztályokba. Ezt akkor használjuk, ha olyan új osztályt szeretnénk létrehozni, ami nagyban hasonlít az ős osztályhoz, viszont kisebb dolgokban különbözik tőle. Ez a módszer nagyon hatékonnyá teszi az új funkciók fejlesztését és a hibák javítását is, hiszen minden az ős osztályban végrehajtott módosítás automatikusan öröklődik a child osztályokba. A következőkben bemutatom az örökítést egy életszerű példán keresztül:
+
+```python
+class Vehicle:
+    def __init__(self, type, max_speed, color):
+        self.type = type
+        self.max_speed = max_speed
+        self.color = color
+
+    def get_max_speed(self):
+        return self.max_speed
+
+class Car(Vehicle):
+    pass
+
+c = Car("BMW", 180, "red")
+print( c.get_max_speed() )
+>>>180
+```
+A fenti példa szemlélteti hogyan írtam fel egy Vehicle ős osztályt. Ott létrehoztam néhány attribútumot ami egy járműre jellemző. Figyeld meg, hogy kapja meg a Car osztály a Vehicle osztályt. Ezek után már meghívhatom a get_max_speed() metódust amit az ős osztályban definiáltam. Láthatod hogy örökölte az attribútumokat és a metódust a Car.
+Ez a mechanizmus lehetővé teszi számunkra, hogy egy helyen írjuk meg a szükséges attribútumokat és függvényeket melyeket más osztályok átvehetnek és ezeken keresztül használnak. Ha javítani és fejleszteni kell a kódon akkor elegendő az ős osztályban dolgoznunk. Minden változtatás öröklődik az alosztályokba is. 
+
+## super()
+Az örökítés után lehetőséged van arra hogy a gyermek osztályban teljesen, vagy részlegesen felülírd az ős metódusait. Itt használjuk a `supert()`-t. 
+
+```python
+class Vehicle:
+    def __init__(self, speed, weight, name):
+        self.speed = speed
+        self.weight = weight
+        self.name = name
+
+class Car(Vehicle):
+    # override parent class __init__
+    def __init__(self, speed, weight, name, wheels):
+        # call parent class's __init__ to fill out the base attributes
+        super().__init__(speed, weight, name)
+        self.wheels = wheels
+```
+
+A fenti példa azt mutatja meg, hogy a Car felülírja az ős konstrukturát és hozzáad egy új attribútumot a `wheels`-t.
+Itt a `super().__init__(speed, weight, name)` feladata az, hogy az ősben lévő konstruktor is lefusson és létrehozza az eredeti attribútumokat. Ez után mi hozzáadjuk a sajátunkat. Ez a részleges felülírás (partial override).
+
+Teljes felülírásról akkor beszélünk ha kihagyjuk a super() sort. Ebben az esetben a car saját, az őstől teljesen eltésrő konstruktort kap ahol nekünk kell létrehozni az osztály attribútumati.
+
+```python
+class Car(Vehicle):
+    def __init__(self, speed, weight, name, wheels):
+        ...
+``` 
